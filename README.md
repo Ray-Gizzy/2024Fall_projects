@@ -13,3 +13,5 @@ https://www.kaggle.com/code/avanishsingh007/green-house-gas-historical-emission-
 Australia Annual GDP Report: australia-gdp-gross-domestic-product.csv
 https://www.macrotrends.net/global-metrics/countries/aus/australia/gdp-gross-domestic-product
 
+China Annual GDP Report: 
+https://fred.stlouisfed.org/series/MKTGDPCNA646NWDB
