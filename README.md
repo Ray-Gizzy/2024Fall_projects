@@ -1,62 +1,74 @@
 # 2024Fall_projects
 
 # Impacts of Hosting the Olympics: A Comparative Study of Sydney 2000 and Beijing 2008
+---
 ## Overview
 This project investigates the impacts of hosting the Olympic Games through a combined analysis of **between-country differences** and **temporal trends**. Using the 2000 Sydney Olympics (Australia) and the 2008 Beijing Olympics (China) as case studies, we analyze changes in key indicators over the 5-year periods before and after the events. These indicators include economic, tourism, health, environment, and employment.
 
 The study aims to:
-* Compare changes in key indicators over the 5-year periods before and after hosting Olympic for developed country (Australia) and developing country (China).
-* Explore how these impacts evolve over short-term (1–2 years) and middle-term (3-5 years) periods.
+- Compare changes in key indicators over the 5-year periods before and after hosting Olympic for developed country (Australia) and developing country (China).
+- Explore how these impacts evolve over short-term (1–2 years) and middle-term (3-5 years) periods.
 
-
+---
 ## Hypotheses
 
 This project evaluates two dimensions of Olympic impacts:
 
 1. Between-Country Hypotheses
-**Economic Growth**: China experiences larger short-term GDP and FDI growth. Australia exhibits more consistent long-term economic benefits.
-**Tourism Impact**: Both countries see an increase in international tourist arrivals during and after hosting the Olympics. Australia sustains tourism growth for longer periods post-Olympics compared to China.
-**Health and Environment**: Both countries experience health and environmental benefits, such as lower obesity rates, lower underweight rates, reduced greenhouse gas emission, and increased renewable energy consumption. Australia sustain theses improvements for longer periods compared to China.
-**Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the long term.
 
+- **Economic Growth**: China experiences larger short-term GDP and FDI growth. Australia exhibits more consistent long-term economic benefits.
+
+- **Tourism Impact**: Both countries see an increase in international tourist arrivals during and after hosting the Olympics. Australia sustains tourism growth for longer periods post-Olympics compared to China.
+
+- **Health and Environment**: Both countries experience health and environmental benefits, such as lower obesity rates, lower underweight rates, reduced greenhouse gas emission, and increased renewable energy consumption. Australia sustain theses improvements for longer periods compared to China.
+
+- **Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the long term.
 
 2. Temporal Hypotheses
-* Short-Term Effects (1–2 years): For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
-* Long-Term Effects (6–10 years): Australia is more likely to sustain the benefits of hosting the Olympics for a longer duration. Conversely, while China also experience increases in GDP, FDI, and tourism, these benefits tend to grow at a slower pace, with rebounds in unemployment, obesity rates, and renewable energy consumption.
+
+- Short-Term Effects (1–2 years): For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
+
+- Long-Term Effects (6–10 years): Australia is more likely to sustain the benefits of hosting the Olympics for a longer duration. Conversely, while China also experience increases in GDP, FDI, and tourism, these benefits tend to grow at a slower pace, with rebounds in unemployment, obesity rates, and renewable energy consumption.
 
 
-
+---
 ## Methodology
 We analyze data across five key dimensions:
 
 1. Economic Indicators
-GDP: [Australia](data/australia-gdp-gross-domestic-product.csv), [China](data/China-gdp.csv)
-Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
-Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv) _好像没用到_
+
+- GDP: [Australia](data/australia-gdp-gross-domestic-product.csv), [China](data/China-gdp.csv)
+- Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
+- Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv) _好像没用到_
 
 2. Tourism Performance
-International Tourists Arrival: [Tourism](data/tourism_data.csv)
+
+- International Tourists Arrival: [Tourism](data/tourism_data.csv)
 
 3. Health Metrics
-Obesity Prevalence: [Adult Obesity](data/Prevalence_of_obesity_among_adults.csv)
-Underweight Prevalence: [Adult Underweight](data/Prevalence_of_underweight_among_adults.csv)
+
+- Obesity Prevalence: [Adult Obesity](data/Prevalence_of_obesity_among_adults.csv)
+- Underweight Prevalence: [Adult Underweight](data/Prevalence_of_underweight_among_adults.csv)
 
 4. Environmental Indicators
-Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
-Renewable Energy Consumption: [Renewable Energy](data/Renewable_energy_consumption.csv)
+
+- Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
+- Renewable Energy Consumption: [Renewable Energy](data/Renewable_energy_consumption.csv)
 
 * Urban Development:
-Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  _好像没用到_
+
+- Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  _好像没用到_
 
 5. Labor Market:
-Employment Change: [Unemployment Rate Australia](data/Unemployment_rate_Australia.csv),[Unemployment Rate China](data/Unemployment_rate_China.csv)
+
+- Employment Change: [Unemployment Rate Australia](data/Unemployment_rate_Australia.csv),[Unemployment Rate China](data/Unemployment_rate_China.csv)
 
 
 
 
 
 
-
+---
 #### 草稿和其他：
 分析分多个层面：
 经济层面
