@@ -16,14 +16,14 @@ The study aims to:
 This project evaluates two dimensions of Olympic impacts:
 
 1. Between-Country Hypotheses
-- **Economic Growth**: China experiences larger short-term GDP and FDI growth. Australia exhibits more consistent long-term economic benefits.
+- **Economic Growth**: China experiences larger short-term GDP and FDI growth. Australia exhibits more consistent middle-term economic benefits.
 - **Tourism Impact**: Both countries see an increase in international tourist arrivals during and after hosting the Olympics. Australia sustains tourism growth for longer periods post-Olympics compared to China.
 - **Health and Environment**: Both countries experience health and environmental benefits, such as lower obesity rates, lower underweight rates, reduced greenhouse gas emission, and increased renewable energy consumption. Australia sustain theses improvements for longer periods compared to China.
-- **Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the long term.
+- **Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the middle term.
 
 2. Temporal Hypotheses
-- Short-Term Effects (1–2 years): For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
-- Long-Term Effects (6–10 years): Australia is more likely to sustain the benefits of hosting the Olympics for a longer duration. Conversely, while China also experience increases in GDP, FDI, and tourism, these benefits tend to grow at a slower pace, with rebounds in unemployment, obesity rates, and renewable energy consumption.
+- **Short-Term Effects (1–2 years)**: For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
+- **Middle-Term Effects (3-5 years)**: Australia is more likely to sustain the benefits of hosting the Olympics for a longer duration. Conversely, while China also experience increases in GDP, FDI, and tourism, these benefits tend to grow at a slower pace, with rebounds in unemployment, obesity rates, and renewable energy consumption.
 
 <br><br>
 ## Methodology
