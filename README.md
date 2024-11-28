@@ -1,4 +1,5 @@
 # 2024Fall_projects
+<br>
 
 # Impacts of Hosting the Olympics: A Comparative Study of Sydney 2000 and Beijing 2008
 <br><br>
@@ -19,7 +20,7 @@ This project evaluates two dimensions of Olympic impacts:
 - **Tourism Impact**: Both countries see an increase in international tourist arrivals during and after hosting the Olympics. Australia sustains tourism growth for longer periods post-Olympics compared to China.
 - **Health and Environment**: Both countries experience health and environmental benefits, such as lower obesity rates, lower underweight rates, reduced greenhouse gas emission, and increased renewable energy consumption. Australia sustain theses improvements for longer periods compared to China.
 - **Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the long term.
-<br>
+
 2. Temporal Hypotheses
 - Short-Term Effects (1–2 years): For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
 - Long-Term Effects (6–10 years): Australia is more likely to sustain the benefits of hosting the Olympics for a longer duration. Conversely, while China also experience increases in GDP, FDI, and tourism, these benefits tend to grow at a slower pace, with rebounds in unemployment, obesity rates, and renewable energy consumption.
@@ -44,8 +45,8 @@ We analyze data across five key dimensions:
 - Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
 - Renewable Energy Consumption: [Renewable Energy](data/Renewable_energy_consumption.csv)
 
-* Urban Development:
-- Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  _好像没用到_
+4. _好像没用到_ Urban Development:
+- Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  
 
 5. Labor Market:
 - Employment Change: [Unemployment Rate Australia](data/Unemployment_rate_Australia.csv),[Unemployment Rate China](data/Unemployment_rate_China.csv)
