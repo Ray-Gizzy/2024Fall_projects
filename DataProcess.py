@@ -34,19 +34,6 @@ def filter_by_country(df, country_column, countries):
     return df[df[country_column].isin(countries)]
 
 
-# for 6 world csv, convert year in column to year in row
-def reshape_dataset(df, id_vars, value_vars):
-    """
-    For dataset where year is in the first row, convert it to year in column
-    :param df: pd.DataFrame
-    :param id_vars: column kept
-    :param value_vars: column need to change
-    :return: pd.DataFrame
-    """
-    return pd.melt(df, id_vars=id_vars, value_vars=value_vars,
-                   var_name='Year', value_name='Value').astype({'Year': int})
-
-
 # for all csv. Must implement after normalize date (so only YYYY left)
 def filter_by_year_range(df, year_column, year_range):
     """
