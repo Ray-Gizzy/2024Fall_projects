@@ -10,7 +10,7 @@ import pandas as pd
 # 4. 年份： AUS 1995-2005；CHI 2003-2013
 
 
-# works for 2 GDP csv
+# works for 2 GDP csv with date format YYYY/MM/DD
 def normalize_date(df, date_column):
     """
     Change different date format to YYYY
@@ -22,7 +22,7 @@ def normalize_date(df, date_column):
     return df
 
 
-# works for 6 world csv
+# works for 6 world csv, to extract only AUS & CHI
 def filter_by_country(df, country_column, countries):
     """
     Keep only required countries (Australia, China)
@@ -34,10 +34,11 @@ def filter_by_country(df, country_column, countries):
     return df[df[country_column].isin(countries)]
 
 
-# for all csv. Must implement after normalize date (so only YYYY left)
+# for most csv. Must implement after normalize date (so only YYYY left)
+# extract Australia 1995-2005, China 2003-2013
 def filter_by_year_range(df, year_column, year_range):
     """
-    Keep only required year range (Australia 1995-2005, China 2003-2013 --> 1995-2013)
+    Keep only required year range
     :param df: pd.DataFrame
     :param year_column: which column to filter
     :param year_range: year range
@@ -47,27 +48,30 @@ def filter_by_year_range(df, year_column, year_range):
     return df[(df[year_column] >= start_year) & (df[year_column] <= end_year)]
 
 
-def convert_gdp(df, value_column, convert_to_billion=False):
+def convert_values(df, value_column, convert_to_billion=False, column_label="Value"):
     """
-    Convert values to billions.
+    Convert values to billions and rename column dynamically.
+
     :param df: pd.DataFrame
     :param value_column: which column to convert
     :param convert_to_billion: whether to convert values to billions
+    :param column_label: new label for the column (e.g., "GDP", "FDI")
     :return: pd.DataFrame
     """
-
-    # Convert GDP values to billions if specified
+    # Convert values to billions if specified
     if convert_to_billion:
         df[value_column] = df[value_column] / 1e9  # Convert to billions
 
-    # Rename the GDP column to indicate units
+    # Rename the column
     if convert_to_billion:
-        df.rename(columns={value_column: f"GDP (Billion)"}, inplace=True)
+        df.rename(columns={value_column: column_label}, inplace=True)
 
     return df
 
 
-def preprocess_csv_type1(file_path, date_column, year_column, year_range, value_column=None, skip_rows=None, convert_to_billion=False):
+def preprocess_csv_type1(
+    file_path, date_column, year_column, year_range,
+    value_column=None, skip_rows=None, convert_to_billion=False, column_label=None):
     """
     To process csv type 1, which is for 1 country with 'Date' column.
     :param file_path: csv file path
@@ -76,6 +80,7 @@ def preprocess_csv_type1(file_path, date_column, year_column, year_range, value_
     :param year_range: year range
     :param value_column: which column to convert (GDP)
     :param skip_rows: skip rows until column name occurs
+    :param convert_to_billion: whether to convert values to billions
     :return: pd.DataFrame
     """
 
@@ -83,7 +88,10 @@ def preprocess_csv_type1(file_path, date_column, year_column, year_range, value_
     df = normalize_date(df, date_column)
     df = filter_by_year_range(df, year_column, year_range)
     if value_column and convert_to_billion:
-        df = convert_gdp(df, value_column, convert_to_billion=True)
+        if column_label is None:
+            raise ValueError("`column_label` must be provided when `convert_to_billion` is True.")
+        df = convert_values(df, value_column, convert_to_billion=True, column_label=column_label)
+    df.columns = df.columns.str.strip()
     return df
 
 
@@ -105,7 +113,9 @@ def preprocess_csv_type2(file_path, country_column, countries, year_column, year
     return df
 
 
-def preprocess_csv_type3(file_path, country_column, countries, year_column, year_range, skip_rows=None):
+def preprocess_csv_type3(
+        file_path, country_column, countries, year_column, year_range,
+        skip_rows=None, value_column=None, convert_to_billion=False, column_label=None):
     """
     To process csv type 3, which doesn't have a column named Date, but every year as 1 column.
     :param file_path: csv file path
@@ -126,6 +136,11 @@ def preprocess_csv_type3(file_path, country_column, countries, year_column, year
 
     df[year_column] = pd.to_numeric(df[year_column], errors='coerce')
     df = filter_by_year_range(df, year_column, year_range)
+    if value_column and convert_to_billion:
+        if column_label is None:
+            raise ValueError("`column_label` must be provided when `convert_to_billion` is True.")
+        df = convert_values(df, value_column, convert_to_billion=True, column_label=column_label)
+    df.columns = df.columns.str.strip()
     return df
 
 
@@ -162,10 +177,11 @@ if __name__ == '__main__':
         file_path='data/China-gdp.csv',
         date_column='DATE',
         year_column='DATE',
-        year_range=(2002, 2013),
+        year_range=(2003, 2013),
         value_column='MKTGDPCNA646NWDB',
         skip_rows=0,
-        convert_to_billion=True
+        convert_to_billion=True,
+        column_label='GDP'
     )
     #print(CHI_GDP)  # test success
 
@@ -215,9 +231,12 @@ if __name__ == '__main__':
         countries=['Australia'],
         year_column='Year',
         year_range=(1995,2005),
-        skip_rows=3
+        skip_rows=3,
+        value_column='Value',
+        convert_to_billion=True,
+        column_label='FDI'
     )
-    #print(AUS_FDI)  # test success
+    print(AUS_FDI)  # test success
 
     CHI_FDI = preprocess_csv_type3(
         file_path='data/Foreign_Direct _Investment.csv',
@@ -225,9 +244,12 @@ if __name__ == '__main__':
         countries=['China'],
         year_column='Year',
         year_range=(2003,2013),
-        skip_rows=3
+        skip_rows=3,
+        value_column='Value',
+        convert_to_billion=True,
+        column_label='FDI'
     )
-    #print(CHI_FDI)  # test success
+    print(CHI_FDI)  # test success
 
     AUS_GHG_emission = preprocess_csv_type3(
         file_path='data/ghg-emissions.csv',
@@ -323,7 +345,7 @@ if __name__ == '__main__':
         year_range=(2002, 2013),
         skip_rows=2
     )
-    print(CHI_UR)  # test success
+    #print(CHI_UR)  # test success
 
 
 
