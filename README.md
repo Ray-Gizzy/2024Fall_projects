@@ -32,7 +32,7 @@ We analyze data across five key dimensions:
 1. Economic Indicators
 - GDP: [Australia](data/australia-gdp-gross-domestic-product.csv), [China](data/China-gdp.csv)
 - Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
-- Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv) _好像没用到_
+- Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv)
 
 2. Tourism Performance
 - International Tourists Arrival: [Tourism](data/tourism_data.csv)
@@ -43,9 +43,9 @@ We analyze data across five key dimensions:
 
 4. Environmental Indicators
 - Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
-- Renewable Energy Consumption: [Renewable Energy](data/Renewable_energy_consumption.csv)
+- Renewable Energy Consumption: [Renewable Energy](data/Renewable_energy_consumption.csv) _数据集有点问题_
 
-4. _好像没用到_ Urban Development:
+4. _没用到_ Urban Development:
 - Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  
 
 5. Labor Market:
