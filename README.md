@@ -30,7 +30,7 @@ This project evaluates two dimensions of Olympic impacts:
 We analyze data across five key dimensions:
 
 1. Economic Indicators
-- GDP: [Australia](data/australia-gdp-gross-domestic-product.csv), [China](data/China-gdp.csv)
+- GDP: [Australia](data/australia-gdp-gross-domestic-product.csv), [China](data/china-gdp-gross-domestic-product.csv)
 - Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
 - Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv)
 
@@ -70,8 +70,8 @@ Data Sources:
 Australia Annual GDP Report: australia-gdp-gross-domestic-product.csv
 https://www.macrotrends.net/global-metrics/countries/aus/australia/gdp-gross-domestic-product
 
-China Annual GDP Report: China-gdp.csv
-https://fred.stlouisfed.org/series/MKTGDPCNA646NWDB
+China Annual GDP Report: china-gdp-gross-domestic-product.csv
+https://www.macrotrends.net/global-metrics/countries/CHN/china/gdp-gross-domestic-product
 
 Foreign Direct Investment: Foreign_Direct_Investment.csv
 https://data.worldbank.org/indicator/BX.KLT.DINV.CD.WD
