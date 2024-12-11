@@ -43,7 +43,6 @@ We analyze data across five key dimensions:
 
 4. Environmental Indicators
 - Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
-- Renewable Energy Consumption: [Renewable Energy](data/Renewable_energy_consumption.csv) _数据集有点问题_
 
 4. _没用到_ Urban Development:
 - Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  
@@ -98,8 +97,6 @@ https://www.who.int/data/gho/data/indicators/indicator-details/GHO/prevalence-of
 Green House Gas Emissions: ghg-emissions.csv
 https://www.kaggle.com/code/avanishsingh007/green-house-gas-historical-emission-data-analysis?select=ghg-emissions.csv
 
-Renewable Consumption: Renewable_energy_consumption.csv
-https://data.worldbank.org.cn/indicator/EG.FEC.RNEW.ZS?locations=CN-AU
 
 
 <br><br>
