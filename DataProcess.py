@@ -2,15 +2,15 @@ import pandas as pd
 
 
 # 1. load data
-# 2. date format: Date(AUS GDP:年末；CHI GDP:年初), Period（AUS/CHI OBE; AUS/CHI UNDER）, --> YEAR
+# 2. date format: Date(YYYY), Period（AUS/CHI OBE; AUS/CHI UNDER）, --> YEAR
 # FDI world 1960, Gov Consum world 1960, Renew Energy world 1960, Tourism world 1960, UR world 1960;
 # GHG world 1990;
 # UR CHI 2002-2014；
-# 3. 保留国家
-# 4. 年份： AUS 1995-2005；CHI 2003-2013
+# 3. Keep Countries
+# 4. Year Range Select：i.e., AUS 1995-2005；CHI 2003-2013
 
 
-# works for 2 GDP csv with date format YYYY/MM/DD
+# works for 2 GDP csv with date format YYYY/MM/DD (KOR, UK)
 def normalize_date(df, date_column):
     """
     Change different date format to YYYY
@@ -22,7 +22,7 @@ def normalize_date(df, date_column):
     return df
 
 
-# works for 6 world csv, to extract only AUS & CHI
+# works for 6 world csv, to extract only selected countries
 def filter_by_country(df, country_column, countries):
     """
     Keep only required countries (Australia, China)
@@ -35,7 +35,7 @@ def filter_by_country(df, country_column, countries):
 
 
 # for most csv. Must implement after normalize date (so only YYYY left)
-# extract Australia 1995-2005, China 2003-2013
+# extract year range (10 year window)
 def filter_by_year_range(df, year_column, year_range):
     """
     Keep only required year range
@@ -48,6 +48,7 @@ def filter_by_year_range(df, year_column, year_range):
     return df[(df[year_column] >= start_year) & (df[year_column] <= end_year)]
 
 
+# for GDP per capita (FDI is still in current US$ total)
 def convert_values(df, value_column, convert_to_billion=False, convert_to_million=False, column_label="Value"):
     """
     Convert values to billions or millions and rename column dynamically.
@@ -76,7 +77,7 @@ def preprocess_csv_type1(
     file_path, date_column, year_column, year_range,
     value_column=None, skip_rows=None, convert_to_million=False, convert_to_billion=False, column_label=None):
     """
-    To process csv type 1, which is for 1 country with 'Date' column.
+    To process csv type 1, which is for country with 'Date' column.
     :param file_path: csv file path
     :param date_column: which column to normalize
     :param year_column: which column to filter
@@ -106,7 +107,7 @@ def preprocess_csv_type1(
 
 def preprocess_csv_type2(file_path, country_column, countries, year_column, year_range, skip_rows=None):
     """
-    To process csv type 2, which is for 2 country with 'Period' column.
+    To process csv type 2, which is for country with 'Period' column.
     :param file_path: csv file path
     :param country_column: which column to convert
     :param countries: list of countries
@@ -134,7 +135,7 @@ def preprocess_csv_type3(
         file_path, country_column, countries, year_column, year_range,
         skip_rows=None, value_column=None, convert_to_million=False, convert_to_billion=False, column_label=None):
     """
-    To process csv type 3, which doesn't have a column named Date, but every year as 1 column.
+    To process csv type 3, which doesn't have a column named Date, but every year as 1 column (the WorldBank csvs).
     :param file_path: csv file path
     :param country_column: which column to select
     :param countries: list of countries
