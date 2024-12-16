@@ -33,8 +33,8 @@ This project evaluates two dimensions of Olympic impacts:
 We analyze data across five key dimensions:
 
 1. Economic Indicators
-- GDP: [country](data/[country]-gdp-gross-domestic-product.csv)
-- Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
+- GDP: [country](data/GDP.csv), [KOR](data/GDP_KOR.csv), [UK](data/GDP_UK.csv)
+- Foreign Direct Investment: [Foreign Direct Investment](data/FDI.csv)
 - Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv)
 
 2. Tourism Performance
@@ -53,10 +53,10 @@ We analyze data across five key dimensions:
 <br><br>
 **Data Sources:**
 
-Annual GDP Report: china-gdp-gross-domestic-product.csv
+Annual GDP Report: GDP.csv
 https://www.macrotrends.net/global-metrics/countries/CHN/china/gdp-gross-domestic-product
 
-Foreign Direct Investment: Foreign_Direct_Investment.csv
+Foreign Direct Investment: FDI.csv
 https://data.worldbank.org/indicator/BX.KLT.DINV.CD.WD
 
 General Government Final Consumption Expenditure: Government_consumption.csv
@@ -81,11 +81,6 @@ https://www.who.int/data/gho/data/indicators/indicator-details/GHO/prevalence-of
 Green House Gas Emissions: ghg-emissions.csv
 https://www.kaggle.com/code/avanishsingh007/green-house-gas-historical-emission-data-analysis?select=ghg-emissions.csv
 
-
-
-<br><br>
-Urban Population %: Percentage_Urban_Population.csv
-https://data.worldbank.org/topic/urban-development?locations=CN-AU
 
 
 <br><br>
@@ -126,7 +121,10 @@ The availability and quality of data vary significantly between countries and ti
 **Potentials for Future Research**
 
 **Detailed Case Studies**
-Including more detailed case studies focused on specific host cities, such as London 2012 (developed economy) and Rio 2016 (developing economy), could provide better insights into the local impacts of hosting the Olympics. These case studies could delve deeper into city-level infrastructure development, urban regeneration, and social outcomes. For instance, London's emphasis on sustainability and Rio's unique challenges with political and economic instability could offer contrasting result that complement the broader national analyses.
+Including all hosting countries and looked only at the data of hosting cities could provide better insights into the local impacts of hosting the Olympics. These case studies could delve deeper into city-level infrastructure development, urban regeneration, and social outcomes. For instance, London's emphasis on sustainability and Rio's unique challenges with political and economic instability could offer contrasting result that complement the broader national analyses.
 
-**Analysis of Other International Events**
-Expanding the scope to include other major global events, such as the FIFA World Cup, World Expo, or Commonwealth Games, would enable comparative analysis across different types of international events. These events also involve significant investments and have varying degrees of economic, social, and environmental impacts. Examining whether similar patterns emerge across these events could help distinguish Olympic-specific effects from general trends associated with large-scale international gatherings.
+**Failture of Functions**
+Not combine the cleaned csv into 1 function made our ipynb much longer than expected.
+
+**Doctest**
+Not able to add doctests, instead test every csv and revise the function made our codes less reliable.
