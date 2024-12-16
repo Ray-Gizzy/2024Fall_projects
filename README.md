@@ -33,8 +33,8 @@ This project evaluates two dimensions of Olympic impacts:
 We analyze data across five key dimensions:
 
 1. Economic Indicators
-- GDP: [country](data/[country]-gdp-gross-domestic-product.csv)
-- Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
+- GDP: [country](data/GDP.csv), [KOR](data/GDP_KOR.csv), [UK](data/GDP_UK.csv)
+- Foreign Direct Investment: [Foreign Direct Investment](data/FDI.csv)
 - Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv)
 
 2. Tourism Performance
@@ -50,13 +50,13 @@ We analyze data across five key dimensions:
 5. Labor Market:
 - Employment Change: [Unemployment Rate China](data/Unemployment_rate_China.csv), [Unemployment Rate for the rest of the country](data/Unemployment_rate.csv),
 
+<br><br>
+**Data Sources:**
 
-Data Sources:
-
-Annual GDP Report: china-gdp-gross-domestic-product.csv
+Annual GDP Report: GDP.csv
 https://www.macrotrends.net/global-metrics/countries/CHN/china/gdp-gross-domestic-product
 
-Foreign Direct Investment: Foreign_Direct_Investment.csv
+Foreign Direct Investment: FDI.csv
 https://data.worldbank.org/indicator/BX.KLT.DINV.CD.WD
 
 General Government Final Consumption Expenditure: Government_consumption.csv
@@ -84,13 +84,47 @@ https://www.kaggle.com/code/avanishsingh007/green-house-gas-historical-emission-
 
 
 <br><br>
-Urban Population %: Percentage_Urban_Population.csv
-https://data.worldbank.org/topic/urban-development?locations=CN-AU
-
-
-<br><br>
 Unemployment Rate(world databank): Unemployment_rate_Australia.csv
 https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?end=2023&locations=AU&start=1991&view=chart
 
 China Unemployment Rate (2002-2015): Unemployment_rate_China.csv
 https://data.stats.gov.cn/english/easyquery.htm?cn=C01
+
+<br><br>
+**Analytical Approach**
+
+Preprocessing Steps:
+Data cleaning methods, e.g., handling missing values, and renaming columns.
+
+Techniques for aligning datasets across different countries and time periods:
+Use of growth rate calculations for before and after comparisons.
+Correlation analysis to identify relationships between metrics (e.g., GDP and FDI).
+Visualization methods, such as line plots, bar charts, and subplots for trend analysis.
+
+
+<br><br>
+**Limitations**
+**Temporal Scope Limitation**
+This study focuses on 5 years before and after each Olympic event to analyze short-term and middle-term impacts. However, this temporal scope may not capture long-term effects, such as infrastructure legacies or sustained economic and environmental benefits. Conversely, pre-Olympic impacts may be underestimated if preparatory activities began earlier than five years before the event.
+
+**Correlation vs. Causation**
+While the analysis identifies patterns and trends, it does not establish causation. For example, a decline in unemployment or an increase in GDP growth during the Olympic period may coincide with global economic cycles or pre-existing national policies unrelated to hosting the Olympics. These confounding factors make it difficult to attribute observed changes solely to the event.
+
+**External Events Overlapping the Olympics**
+The observed impacts may be influenced by external events occurring during the study period. For instance, global financial crises, regional political instability, or public health emergencies could skew results. The intersection between these external factors and Olympic-related changes introduces complexities that are not fully accounted for in the analysis.
+
+**Data Quality and Consistency Across Time**
+The availability and quality of data vary significantly between countries and time periods. Discrepancies in how data are collected, reported, and categorized can cause biases. Additionally, missing or incomplete datasets for some indicators (e.g., tourism in certain years) may harm the robustness of conclusions, particularly for emerging economies. Standardizing data across all countries was challenging and may have affected the analysis.
+<br>
+
+<br><br>
+**Potentials for Future Research**
+
+**Detailed Case Studies**
+Including all hosting countries and looked only at the data of hosting cities could provide better insights into the local impacts of hosting the Olympics. These case studies could delve deeper into city-level infrastructure development, urban regeneration, and social outcomes. For instance, London's emphasis on sustainability and Rio's unique challenges with political and economic instability could offer contrasting result that complement the broader national analyses.
+
+**Failture of Functions**
+Not combine the cleaned csv into 1 function made our ipynb much longer than expected.
+
+**Doctest**
+Not able to add doctests, instead test every csv and revise the function made our codes less reliable.

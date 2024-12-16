@@ -27,7 +27,7 @@ def calculate_growth_rate(df, metric_column):
         previous_year = df.loc[i - 1, metric_column]  # row:i-1, col: metric
         current_year = df.loc[i, metric_column]
 
-        if previous_year == 0:
+        if previous_year == 0 or not isinstance(current_year, (int, float)) or not isinstance(previous_year, (int, float)):
             growth_rates.append(0)
         else:
             growth_rate = ((current_year - previous_year) / previous_year) * 100
@@ -59,8 +59,16 @@ def index_rename_and_calculate_growth_rate(df, rename_dict=None, host_year=None,
     1  2000          1100.0        10.000000              0
     2  2001          1210.0        10.000000              1
     """
+    # Handle empty DataFrame
     if df.empty:
-        raise ValueError("The input DataFrame is empty. Please check the preprocessing steps.")
+        print(f"Warning: Input DataFrame is empty for host year {host_year}.")
+        return pd.DataFrame({
+            'Country': [rename_dict.get('Country', 'Unknown')],
+            'Year': [host_year],
+            metric_column: [0],
+            'Relative Year': [0],
+            'Growth Rate (%)': [0]
+        })
 
     df.reset_index(inplace=True, drop=True)  # Ensure continuous index
     df.columns = df.columns.str.strip()
@@ -71,11 +79,26 @@ def index_rename_and_calculate_growth_rate(df, rename_dict=None, host_year=None,
     if 'Year' not in df.columns:
         raise ValueError("The DataFrame does not have a 'Year' column. Please check the data.")
 
+    df['Year'] = pd.to_numeric(df['Year'], errors='coerce')  # Convert to numeric, invalid rows become NaN
+    df.dropna(subset=['Year'], inplace=True)  # Drop rows with invalid Year
+    df['Year'] = df['Year'].astype(int)  # Ensure Year is integer
+
     if len(df) < 2:
         raise ValueError("The DataFrame has insufficient rows for processing.")
 
     if df['Year'].iloc[0] > df['Year'].iloc[-1]:  # High to Low
         df.sort_values(by='Year', inplace=True)  # Sort ascending
+
+    # Check if host_year is within the Year range
+    if host_year not in df['Year'].values:
+        print(f"Warning: Host year {host_year} not found in the Year column for this dataset.")
+        return pd.DataFrame({
+            'Country': [rename_dict.get('Country', 'Unknown')],
+            'Year': [host_year],
+            metric_column: [0],
+            'Relative Year': [0],
+            'Growth Rate (%)': [0]
+        })
 
     calculate_growth_rate(df, metric_column=metric_column)  # Ensure this function works correctly
     df['Relative Year'] = df['Year'] - host_year
@@ -161,6 +184,8 @@ def eight_subplots(dataframes, host_years, legends, titles, x_column, y_column, 
     ...     ylabel="Test Value"
     ... )
     """
+
+
     plt.figure(figsize=(16, 12))  # Adjust figure size
 
     for i in range(8):
@@ -169,6 +194,16 @@ def eight_subplots(dataframes, host_years, legends, titles, x_column, y_column, 
         host_year = host_years[i]
         legend = legends[i]
         title = titles[i]
+
+        if df.empty:
+            plt.text(0.5, 0.5, "No Data Available", fontsize=12, ha='center', va='center')
+            plt.title(title)
+            plt.axis('off')
+            continue
+
+        # Ensure y_column is numeric
+        if not np.issubdtype(df[y_column].dtype, np.number):
+            df[y_column] = pd.to_numeric(df[y_column], errors='coerce')
 
         plt.plot(df[x_column], df[y_column], label=legend, marker='o', color=f'C{i % 10}')  # Different colors
         plt.axvline(x=host_year, color='red', linestyle='--', label=f'{host_year} Event')
@@ -180,6 +215,7 @@ def eight_subplots(dataframes, host_years, legends, titles, x_column, y_column, 
 
     # Adjust layout and show
     plt.tight_layout()
+    plt.subplots_adjust(hspace=0.5, wspace=0.3)
     plt.show()
 
 
