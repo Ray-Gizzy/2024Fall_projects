@@ -1,13 +1,13 @@
 # 2024Fall_projects
 <br>
 
-# Impacts of Hosting the Olympics: A Comparative Study of Sydney 2000 and Beijing 2008
+# Impacts of Hosting the Olympics: A Comparative Study of Australia, China, Canada, Greece, Spain, United Kindom, United States and South Korea
 <br><br>
 ## Overview
-This project investigates the impacts of hosting the Olympic Games through a combined analysis of **between-country differences** and **temporal trends**. Using the 2000 Sydney Olympics (Australia) and the 2008 Beijing Olympics (China) as case studies, we analyze changes in key indicators over the 5-year periods before and after the events. These indicators include economic, tourism, health, environment, and employment.
+This project investigates the impacts of hosting the Olympic Games through a combined analysis of **between-country differences** and **temporal trends**. Using the 1976 Montreal Olympics(Canada), 1988 Seoul Olympics(South Korea), 1992 Barcelona Olympics(Spain),1996 Atlanta Olympics(United States), 2000 Sydney Olympics (Australia), 2004 Athens Olympics(Greece) and the 2008 Beijing Olympics (China) as case studies, we analyze changes in key indicators over the 5-year periods before and after the events. These indicators include economic, tourism, health, environment, and employment.
 
 The study aims to:
-- Compare changes in key indicators over the 5-year periods before and after hosting Olympic for developed country (Australia) and developing country (China).
+- Compare changes in key indicators over the 5-year periods before and after hosting Olympic for these countries.
 - Explore how these impacts evolve over short-term (1–2 years) and middle-term (3-5 years) periods.
 
 <br><br>
@@ -16,10 +16,11 @@ The study aims to:
 This project evaluates two dimensions of Olympic impacts:
 
 1. Between-Country Hypotheses
-- **Economic Growth**: China experiences larger short-term GDP and FDI growth. Australia exhibits more consistent middle-term economic benefits.
+- **Economic Growth**: Emerging economies like China and South Korea experience more significant short-term economic growth after hosting the Olympics, but their medium- to long-term growth may decelerate. In contrast, developed economies like Australia and Canada show more stable economic growth, with benefits likely to sustain over the medium term (3–5 years).
 - **Tourism Impact**: Both countries see an increase in international tourist arrivals during and after hosting the Olympics. Australia sustains tourism growth for longer periods post-Olympics compared to China.
 - **Health and Environment**: Both countries experience health and environmental benefits, such as lower obesity rates, lower underweight rates, reduced greenhouse gas emission, and increased renewable energy consumption. Australia sustain theses improvements for longer periods compared to China.
 - **Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the middle term.
+
 
 2. Temporal Hypotheses
 - **Short-Term Effects (1–2 years)**: For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
