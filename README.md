@@ -10,6 +10,8 @@ The study aims to:
 - Compare changes in key indicators over the 5-year periods before and after hosting Olympic for these countries.
 - Explore how these impacts evolve over short-term (1–2 years) and middle-term (3-5 years) periods.
 
+For data selection, we intend to use data after 1970 which means that the earliest Olympic Games should be Montreal 1976 (Canada). Meanwhile, since we aim to analyze the effect up to 5 years after the olympics, so our latest pick can be United Kingdom(2012) and Brazil(2016). Brazil's data is rough and not accurate so we decide to hold our step after acquiring the United Kingdom's data.
+
 <br><br>
 ## Hypotheses
 
