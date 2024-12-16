@@ -50,7 +50,7 @@ We analyze data across five key dimensions:
 5. Labor Market:
 - Employment Change: [Unemployment Rate China](data/Unemployment_rate_China.csv), [Unemployment Rate for the rest of the country](data/Unemployment_rate.csv),
 
-
+<br><br>
 **Data Sources:**
 
 Annual GDP Report: china-gdp-gross-domestic-product.csv
@@ -95,7 +95,7 @@ https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?end=2023&locations=AU&start=
 China Unemployment Rate (2002-2015): Unemployment_rate_China.csv
 https://data.stats.gov.cn/english/easyquery.htm?cn=C01
 
-
+<br><br>
 **Analytical Approach**
 
 Preprocessing Steps:
@@ -106,6 +106,8 @@ Use of growth rate calculations for before and after comparisons.
 Correlation analysis to identify relationships between metrics (e.g., GDP and FDI).
 Visualization methods, such as line plots, bar charts, and subplots for trend analysis.
 
+
+<br><br>
 **Limitations**
 **Temporal Scope Limitation**
 This study focuses on 5 years before and after each Olympic event to analyze short-term and middle-term impacts. However, this temporal scope may not capture long-term effects, such as infrastructure legacies or sustained economic and environmental benefits. Conversely, pre-Olympic impacts may be underestimated if preparatory activities began earlier than five years before the event.
@@ -119,6 +121,8 @@ The observed impacts may be influenced by external events occurring during the s
 **Data Quality and Consistency Across Time**
 The availability and quality of data vary significantly between countries and time periods. Discrepancies in how data are collected, reported, and categorized can cause biases. Additionally, missing or incomplete datasets for some indicators (e.g., tourism in certain years) may harm the robustness of conclusions, particularly for emerging economies. Standardizing data across all countries was challenging and may have affected the analysis.
 
+
+<br><br>
 **Potentials for Future Research**
 
 **Detailed Case Studies**
