@@ -94,3 +94,35 @@ https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?end=2023&locations=AU&start=
 
 China Unemployment Rate (2002-2015): Unemployment_rate_China.csv
 https://data.stats.gov.cn/english/easyquery.htm?cn=C01
+
+
+Analytical Approach
+
+Preprocessing Steps:
+Data cleaning methods, e.g., handling missing values, and renaming columns.
+
+Techniques for aligning datasets across different countries and time periods:
+Use of growth rate calculations for before and after comparisons.
+Correlation analysis to identify relationships between metrics (e.g., GDP and FDI).
+Visualization methods, such as line plots, bar charts, and subplots for trend analysis.
+
+Limitations
+Temporal Scope Limitation
+This study focuses on 5 years before and after each Olympic event to analyze short-term and middle-term impacts. However, this temporal scope may not capture long-term effects, such as infrastructure legacies or sustained economic and environmental benefits. Conversely, pre-Olympic impacts may be underestimated if preparatory activities began earlier than five years before the event.
+
+Correlation vs. Causation
+While the analysis identifies patterns and trends, it does not establish causation. For example, a decline in unemployment or an increase in GDP growth during the Olympic period may coincide with global economic cycles or pre-existing national policies unrelated to hosting the Olympics. These confounding factors make it difficult to attribute observed changes solely to the event.
+
+External Events Overlapping the Olympics
+The observed impacts may be influenced by external events occurring during the study period. For instance, global financial crises, regional political instability, or public health emergencies could skew results. The intersection between these external factors and Olympic-related changes introduces complexities that are not fully accounted for in the analysis.
+
+Data Quality and Consistency Across Time
+The availability and quality of data vary significantly between countries and time periods. Discrepancies in how data are collected, reported, and categorized can cause biases. Additionally, missing or incomplete datasets for some indicators (e.g., tourism in certain years) may harm the robustness of conclusions, particularly for emerging economies. Standardizing data across all countries was challenging and may have affected the analysis.
+
+Potentials for Future Research
+
+Detailed Case Studies
+Including more detailed case studies focused on specific host cities, such as London 2012 (developed economy) and Rio 2016 (developing economy), could provide richer insights into the local impacts of hosting the Olympics. These case studies could delve deeper into city-level infrastructure development, urban regeneration, and social outcomes. For instance, London's emphasis on sustainability and Rio's unique challenges with political and economic instability could offer contrasting narratives that complement the broader national analyses.
+
+Analysis of Other International Events
+Expanding the scope to include other major global events, such as the FIFA World Cup, World Expo, or Commonwealth Games, would enable comparative analysis across different types of international events. These events also involve significant investments and have varying degrees of economic, social, and environmental impacts. Examining whether similar patterns emerge across these events could help distinguish Olympic-specific effects from general trends associated with large-scale international gatherings.
