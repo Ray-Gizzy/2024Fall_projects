@@ -17,21 +17,21 @@ This project evaluates two dimensions of Olympic impacts:
 
 1. Between-Country Hypotheses
 - **Economic Growth**: Emerging economies like China and South Korea experience more significant short-term economic growth after hosting the Olympics, but their medium- to long-term growth may decelerate. In contrast, developed economies like Australia and Canada show more stable economic growth, with benefits likely to sustain over the medium term (3–5 years).
-- **Tourism Impact**: Both countries see an increase in international tourist arrivals during and after hosting the Olympics. Australia sustains tourism growth for longer periods post-Olympics compared to China.
-- **Health and Environment**: Both countries experience health and environmental benefits, such as lower obesity rates, lower underweight rates, reduced greenhouse gas emission, and increased renewable energy consumption. Australia sustain theses improvements for longer periods compared to China.
-- **Labor Market Dynamics**: Unemployment rates decrease sharply in the short term for both countries due to job creation during Olympic preparations. However, rebound is more significant and faster in China in the middle term.
-
+- **Tourism Impact**: Tourism-dependent countries like Spain and Greece see a substantial increase in international tourists during the Olympics, with the growth potentially lasting longer than in other countries.
+- **Health and Environment**: Hosting the Olympics improves residents' health indicators.China implements large-scale environmental initiatives during the Olympics but faces a higher risk of returning to high emissions in the medium term. In contrast, resource-rich countries like Australia and Canada are more likely to maintain environmental improvements over the long term.
+- **Labor Market Dynamics**: All countries experience a significant drop in unemployment during the Olympic preparation period (short-term) due to infrastructure projects.
 
 2. Temporal Hypotheses
-- **Short-Term Effects (1–2 years)**: For both countries, hosting the Olympics reduces unemployment rates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
-- **Middle-Term Effects (3-5 years)**: Australia is more likely to sustain the benefits of hosting the Olympics for a longer duration. Conversely, while China also experience increases in GDP, FDI, and tourism, these benefits tend to grow at a slower pace, with rebounds in unemployment, obesity rates, and renewable energy consumption.
+- **Short-Term Effects (1–2 years)**: Hosting the Olympics leads to short-term benefits for all countries, including reduced unemployment rates, increased GDP, FDI, and tourism, as well as improvements in environmental and health indicators due to Olympic commitmenates, increases GDP, FDI and tourism, and boosts environmental and health initiatives as part of Olympic commitments.
+- **Middle-Term Effects (3-5 years)**: Developed countries like Australia, Canada, and the UK are more likely to sustain the economic, environmental, and health benefits of hosting the Olympics
+
 
 <br><br>
 ## Methodology
 We analyze data across five key dimensions:
 
 1. Economic Indicators
-- GDP: [Australia](data/australia-gdp-gross-domestic-product.csv), [China](data/china-gdp-gross-domestic-product.csv)
+- GDP: [country](data/[country]-gdp-gross-domestic-product.csv)
 - Foreign Direct Investment: [Foreign Direct Investment](data/Foreign_Direct_Investment.csv)
 - Government Final Consumption Expenditure: [Government Consumption](data/Government_consumption.csv)
 
@@ -46,28 +46,12 @@ We analyze data across five key dimensions:
 - Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
 
 5. Labor Market:
-- Employment Change: [Unemployment Rate Australia](data/Unemployment_rate_Australia.csv),[Unemployment Rate China](data/Unemployment_rate_China.csv)
-
-
-
-
-<br><br><br><br>
-#### 草稿和其他：
-分析分多个层面：
-经济层面
-健康层面
-环境层面
-社会层面
-
-分析趋势： 增长率比较，前后五年比较等
+- Employment Change: [Unemployment Rate China](data/Unemployment_rate_China.csv), [Unemployment Rate for the rest of the country](data/Unemployment_rate.csv),
 
 
 Data Sources:
 
-Australia Annual GDP Report: australia-gdp-gross-domestic-product.csv
-https://www.macrotrends.net/global-metrics/countries/aus/australia/gdp-gross-domestic-product
-
-China Annual GDP Report: china-gdp-gross-domestic-product.csv
+Annual GDP Report: china-gdp-gross-domestic-product.csv
 https://www.macrotrends.net/global-metrics/countries/CHN/china/gdp-gross-domestic-product
 
 Foreign Direct Investment: Foreign_Direct_Investment.csv
@@ -78,7 +62,7 @@ https://data.worldbank.org/indicator/NE.CON.GOVT.CD?end=2015&locations=CN-AU
 
 
 <br><br>
-Tourism Data for both country: tourism_data.csv
+Tourism Data for all country: tourism_data.csv
 https://data.worldbank.org/indicator/ST.INT.ARVL?end=2015
 
 
@@ -103,7 +87,7 @@ https://data.worldbank.org/topic/urban-development?locations=CN-AU
 
 
 <br><br>
-Australia Unemployment Rate(world databank): Unemployment_rate_Australia.csv
+Unemployment Rate(world databank): Unemployment_rate_Australia.csv
 https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?end=2023&locations=AU&start=1991&view=chart
 
 China Unemployment Rate (2002-2015): Unemployment_rate_China.csv
