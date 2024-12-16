@@ -120,7 +120,7 @@ The observed impacts may be influenced by external events occurring during the s
 
 **Data Quality and Consistency Across Time**
 The availability and quality of data vary significantly between countries and time periods. Discrepancies in how data are collected, reported, and categorized can cause biases. Additionally, missing or incomplete datasets for some indicators (e.g., tourism in certain years) may harm the robustness of conclusions, particularly for emerging economies. Standardizing data across all countries was challenging and may have affected the analysis.
-
+<br>
 
 <br><br>
 **Potentials for Future Research**
