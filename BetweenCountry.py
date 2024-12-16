@@ -11,6 +11,15 @@ def calculate_growth_rate(df, metric_column):
     :param df: a cleaned dataframe
     :param metric_column: the GDP/FDI column
     :return: DataFrame with an additional column 'Growth Rate (%)'
+        Example:
+    >>> import pandas as pd
+    >>> data = {'Year': [2000, 2001, 2002], 'GDP': [1000, 1100, 1210]}
+    >>> df = pd.DataFrame(data)
+    >>> calculate_growth_rate(df, 'GDP')
+       Year   GDP  Growth Rate (%)
+    0  2000  1000         0.000000
+    1  2001  1100        10.000000
+    2  2002  1210        10.000000
     """
     growth_rates = [0]
 
@@ -37,6 +46,18 @@ def index_rename_and_calculate_growth_rate(df, rename_dict=None, host_year=None,
     :param host_year: the hosting year for alignment (e.g., 2000 or 2008)
     :param metric_column: GDP or FDI column to apply the "calculate_growth_rate" function
     :return: cleaned DataFrame
+
+    >>> import pandas as pd
+    >>> data = {'Year': [1999, 2000, 2001], 'GDP': [1000, 1100, 1210]}
+    >>> test_df = pd.DataFrame(data)
+    >>> result = index_rename_and_calculate_growth_rate(
+    ...     test_df, rename_dict={'GDP': 'GDP_per_capita'}, host_year=2000, metric_column='GDP_per_capita'
+    ... )
+    >>> result[['Year', 'GDP_per_capita', 'Growth Rate (%)', 'Relative Year']]
+       Year  GDP_per_capita  Growth Rate (%)  Relative Year
+    0  1999          1000.0         0.000000             -1
+    1  2000          1100.0        10.000000              0
+    2  2001          1210.0        10.000000              1
     """
     if df.empty:
         raise ValueError("The input DataFrame is empty. Please check the preprocessing steps.")
@@ -70,6 +91,17 @@ def growth_rate_plot(dfs, countries, metric, colors=None):
     :param countries: List of countries to compare growth rates.
     :param metric: Column to compare growth rates.
     :param colors: List of colors for each country's line (optional).
+    >>> import pandas as pd
+    >>> test_data1 = {'Relative Year': [-1, 0, 1], 'Growth Rate (%)': [5.0, 10.0, 8.0]}
+    >>> test_data2 = {'Relative Year': [-1, 0, 1], 'Growth Rate (%)': [3.0, 6.0, 7.0]}
+    >>> df1 = pd.DataFrame(test_data1)
+    >>> df2 = pd.DataFrame(test_data2)
+    >>> growth_rate_plot(
+    ...     dfs=[df1, df2],
+    ...     countries=["Country A", "Country B"],
+    ...     metric="GDP",
+    ...     colors=['blue', 'orange']
+    ... )
     """
     if colors is None:
         # Generate a default color palette
@@ -110,6 +142,24 @@ def eight_subplots(dataframes, host_years, legends, titles, x_column, y_column, 
     :param y_column: Column name for the y-axis.
     :param xlabel: Label for the x-axis.
     :param ylabel: Label for the y-axis.
+    >>> import pandas as pd
+    >>> test_data = {'Year': [1995, 1996, 1997, 1998, 1999], 'Value': [10, 12, 15, 14, 18]}
+    >>> df1 = pd.DataFrame(test_data)
+    >>> df2 = pd.DataFrame(test_data)
+    >>> dataframes = [df1, df2] + [None] * 6  # 2 valid DataFrames, 6 placeholders
+    >>> host_years = [1997, 1997] + [None] * 6
+    >>> legends = ["Test Plot 1", "Test Plot 2"] + ["No Data"] * 6
+    >>> titles = ["Title 1", "Title 2"] + ["No Data"] * 6
+    >>> eight_subplots(
+    ...     dataframes=dataframes,
+    ...     host_years=host_years,
+    ...     legends=legends,
+    ...     titles=titles,
+    ...     x_column="Year",
+    ...     y_column="Value",
+    ...     xlabel="Year",
+    ...     ylabel="Test Value"
+    ... )
     """
     plt.figure(figsize=(16, 12))  # Adjust figure size
 

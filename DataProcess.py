@@ -17,6 +17,16 @@ def normalize_date(df, date_column):
     :param df:pd.DataFrame
     :param date_column: which column to normalize
     :return: pd.DataFrame
+    >>> import pandas as pd
+    >>> data = {'Date': ['2020-01-01', '2021-12-31', '01/01/2022', 'InvalidDate']}
+    >>> test_df = pd.DataFrame(data)
+    >>> result = normalize_date(test_df, 'Date')
+    >>> result
+          Date
+    0    2020
+    1    2021
+    2    2022
+    3     NaN
     """
     df[date_column] = pd.to_datetime(df[date_column], errors='coerce').dt.year # if invalid, use NaT
     return df
@@ -30,6 +40,15 @@ def filter_by_country(df, country_column, countries):
     :param country_column: which column to filter
     :param countries: list of countries
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> data = {'Country': ['Australia', 'China', 'Canada', 'Greece'], 'Value': [1, 2, 3, 4]}
+    >>> test_df = pd.DataFrame(data)
+    >>> result = filter_by_country(test_df, 'Country', ['Australia', 'China'])
+    >>> result
+        Country  Value
+    0  Australia      1
+    1      China      2
     """
     return df[df[country_column].isin(countries)]
 
@@ -43,6 +62,16 @@ def filter_by_year_range(df, year_column, year_range):
     :param year_column: which column to filter
     :param year_range: year range
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> data = {'Year': [1990, 1995, 2000, 2005, 2010], 'Value': [10, 15, 20, 25, 30]}
+    >>> test_df = pd.DataFrame(data)
+    >>> result = filter_by_year_range(test_df, 'Year', (1995, 2005))
+    >>> result
+        Year  Value
+    1  1995     15
+    2  2000     20
+    3  2005     25
     """
     start_year, end_year = year_range
     return df[(df[year_column] >= start_year) & (df[year_column] <= end_year)]
@@ -59,6 +88,17 @@ def convert_values(df, value_column, convert_to_billion=False, convert_to_millio
     :param convert_to_million: whether to convert values to millions
     :param column_label: new label for the column (e.g., "GDP", "FDI")
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> data = {'Value': [1e9, 2e9, 3e9]}  # Values in billions
+    >>> test_df = pd.DataFrame(data)
+    >>> # Convert to billions and rename column to "GDP"
+    >>> result = convert_values(test_df, 'Value', convert_to_billion=True, column_label="GDP")
+    >>> result
+       GDP
+    0   1.0
+    1   2.0
+    2   3.0
     """
     if convert_to_billion and convert_to_million:
         raise ValueError("Only one of 'convert_to_billion' or 'convert_to_million' can be True.")
@@ -87,6 +127,29 @@ def preprocess_csv_type1(
     :param convert_to_million: whether to convert values to millions
     :param convert_to_billion: whether to convert values to billions
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> from io import StringIO
+    >>> csv_data = '''
+    ... Date,Value
+    ... 2001-01-01,1000000000
+    ... 2002-01-01,2000000000
+    ... 2003-01-01,3000000000
+    ... '''
+    >>> test_file = StringIO(csv_data)  # Simulate a CSV file with StringIO
+    >>> result = preprocess_csv_type1(
+    ...     file_path=test_file,
+    ...     date_column="Date",
+    ...     year_column="Year",
+    ...     year_range=(2002, 2003),
+    ...     value_column="Value",
+    ...     convert_to_billion=True,
+    ...     column_label="GDP"
+    ... )
+    >>> result
+       Year  GDP
+    1  2002  2.0
+    2  2003  3.0
     """
     df = pd.read_csv(file_path, skiprows=skip_rows)
     df = normalize_date(df, date_column)
@@ -115,6 +178,29 @@ def preprocess_csv_type2(file_path, country_column, countries, year_column, year
     :param year_range: year range
     :param skip_rows: skip rows until column name occurs
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> from io import StringIO
+    >>> csv_data = '''
+    ... Location,Period,Dim1,Value
+    ... Australia,2000,Female,30.5 [info]
+    ... Australia,2001,Male,29.7 [note]
+    ... China,2000,Female,25.1 [data]
+    ... China,2001,Male,24.9 [info]
+    ... '''
+    >>> test_file = StringIO(csv_data)  # Simulate a CSV file with StringIO
+    >>> result = preprocess_csv_type2(
+    ...     file_path=test_file,
+    ...     country_column="Location",
+    ...     countries=["Australia"],
+    ...     year_column="Period",
+    ...     year_range=(2000, 2001),
+    ...     skip_rows=None
+    ... )
+    >>> result
+        Location  Period    Dim1  Value
+    0  Australia    2000  Female   30.5
+    1  Australia    2001    Male   29.7
     """
     df = pd.read_csv(file_path, skiprows=skip_rows)
     df = filter_by_country(df, country_column, countries)
@@ -147,6 +233,30 @@ def preprocess_csv_type3(
     :param convert_to_billion: whether to convert values to billions
     :param column_label: new label for the column
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> from io import StringIO
+    >>> csv_data = '''
+    ... Country Name,2000,2001,2002
+    ... Australia,1000000000,1100000000,1200000000
+    ... China,2000000000,2100000000,2200000000
+    ... '''
+    >>> test_file = StringIO(csv_data)  # Simulate a CSV file with StringIO
+    >>> result = preprocess_csv_type3(
+    ...     file_path=test_file,
+    ...     country_column="Country Name",
+    ...     countries=["Australia"],
+    ...     year_column="Year",
+    ...     year_range=(2000, 2002),
+    ...     value_column="Value",
+    ...     convert_to_billion=True,
+    ...     column_label="GDP"
+    ... )
+    >>> result
+      Country Name  Year  GDP
+    0    Australia  2000  1.0
+    1    Australia  2001  1.1
+    2    Australia  2002  1.2
     """
     df = pd.read_csv(file_path, skiprows=skip_rows)
     df = filter_by_country(df, country_column, countries)
@@ -180,6 +290,26 @@ def preprocess_special_csv(file_path, year_column, year_range, skip_rows=None):
     :param year_range: year range
     :param skip_rows: skip rows until column name occurs
     :return: pd.DataFrame
+
+    >>> import pandas as pd
+    >>> from io import StringIO
+    >>> csv_data = '''
+    ... Indicator,2002,2003,2004,2005,2006
+    ... Unemployment Rate,5.0,5.2,5.1,5.3,5.4
+    ... GDP Growth,3.0,3.1,3.2,3.4,3.5
+    ... '''
+    >>> test_file = StringIO(csv_data)  # Simulate a file with StringIO
+    >>> result = preprocess_special_csv(
+    ...     file_path=test_file,
+    ...     year_column="Year",
+    ...     year_range=(2003, 2005),
+    ...     skip_rows=0
+    ... )
+    >>> result
+           Indicator  Year  Value
+    1  Unemployment Rate  2003   5.2
+    2  Unemployment Rate  2004   5.1
+    3  Unemployment Rate  2005   5.3
     """
     df = pd.read_csv(file_path, skiprows=skip_rows, encoding='latin1')
 
