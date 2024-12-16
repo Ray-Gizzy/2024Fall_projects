@@ -34,36 +34,50 @@ def index_rename_and_calculate_growth_rate(df, rename_dict=None, host_year=None,
 
     :param df: a cleaned dataframe from DataProcess.py
     :param rename_dict: the columns needed to be renamed
-    :param host_year: either 2000 or 2008
+    :param host_year: the hosting year for alignment (e.g., 2000 or 2008)
     :param metric_column: GDP or FDI column to apply the "calculate_growth_rate" function
-    :return: cleaned dataFrame
+    :return: cleaned DataFrame
     """
-    df.reset_index(inplace=True)
+    if df.empty:
+        raise ValueError("The input DataFrame is empty. Please check the preprocessing steps.")
+
+    df.reset_index(inplace=True, drop=True)  # Ensure continuous index
     df.columns = df.columns.str.strip()
+
     if rename_dict:
         df.rename(columns=rename_dict, inplace=True)
 
+    if 'Year' not in df.columns:
+        raise ValueError("The DataFrame does not have a 'Year' column. Please check the data.")
+
+    if len(df) < 2:
+        raise ValueError("The DataFrame has insufficient rows for processing.")
+
     if df['Year'].iloc[0] > df['Year'].iloc[-1]:  # High to Low
         df.sort_values(by='Year', inplace=True)  # Sort ascending
-    calculate_growth_rate(df, metric_column=metric_column)
+
+    calculate_growth_rate(df, metric_column=metric_column)  # Ensure this function works correctly
     df['Relative Year'] = df['Year'] - host_year
+
     return df
 
 
-def growth_rate_plot(dfs, countries, metric, colors):
+def growth_rate_plot(dfs, countries, metric, colors=None):
     """
-    Plot the growth rate for countries.
+    Plot the growth rate for up to eight countries.
 
-    :param dfs: dataframes from "index_rename_and_calculate_growth_rate"
-    :param countries: countries to compare growth rates
-    :param metric: column to compare growth rates
-    :param colors: color of line
+    :param dfs: List of dataframes from "index_rename_and_calculate_growth_rate".
+    :param countries: List of countries to compare growth rates.
+    :param metric: Column to compare growth rates.
+    :param colors: List of colors for each country's line (optional).
     """
     if colors is None:
-        colors = ['blue', 'yellow']
+        # Generate a default color palette
+        colors = ['blue', 'yellow', 'green', 'purple', 'orange', 'pink', 'cyan', 'brown']
 
-    plt.figure(figsize=(8, 5))
-    for df, country, color in zip(dfs, countries, colors):
+    plt.figure(figsize=(12, 8))  # Adjust size for better visualization
+
+    for df, country, color in zip(dfs, countries, colors[:len(countries)]):
         plt.plot(
             df['Relative Year'],
             df['Growth Rate (%)'],
@@ -71,6 +85,7 @@ def growth_rate_plot(dfs, countries, metric, colors):
             marker='o',
             color=color
         )
+
     plt.axvline(x=0, color='red', linestyle='--', label='Host Year')
     plt.title(f"{metric} Growth (Relative to Hosting Year)")
     plt.xlabel("Years (Relative to Hosting Year)")
@@ -80,111 +95,81 @@ def growth_rate_plot(dfs, countries, metric, colors):
     plt.show()
 
 
-def two_subplots(
-        df1, host_year1, legend1, title1,
-        df2, host_year2, legend2, title2,
-        x_column, y_column, xlabel, ylabel,
-        ):
-    """
-    Plot two subplots for given dataframes and metrics.
+import matplotlib.pyplot as plt
 
-    :param df1: DataFrame for the first plot.
-    :param df2: DataFrame for the second plot.
+
+def eight_subplots(dataframes, host_years, legends, titles, x_column, y_column, xlabel, ylabel):
+    """
+    Plot 8 subplots for given dataframes and metrics.
+
+    :param dataframes: List of 8 DataFrames for the plots.
+    :param host_years: List of 8 years for the vertical reference lines.
+    :param legends: List of 8 legends for each plot.
+    :param titles: List of 8 titles for each subplot.
     :param x_column: Column name for the x-axis.
     :param y_column: Column name for the y-axis.
-    :param title1: Title for the first subplot.
-    :param title2: Title for the second subplot.
     :param xlabel: Label for the x-axis.
     :param ylabel: Label for the y-axis.
-    :param legend1: Legend for the first plot.
-    :param legend2: Legend for the second plot.
-    :param host_year1: 2000
-    :param host_year2: 2008
     """
+    plt.figure(figsize=(16, 12))  # Adjust figure size
 
-    plt.figure(figsize=(12, 5))
-    plt.subplot(1, 2, 1)  # Subplot 1: 1ROW, 2COLS
-    plt.plot(df1[x_column], df1[y_column], label=legend1, marker='o', color='blue')
-    plt.axvline(x=host_year1, color='red', linestyle='--', label=f'{host_year1} Olympics')
-    plt.title(title1)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.grid()
+    for i in range(8):
+        plt.subplot(4, 2, i + 1)  # 4 rows, 2 columns, subplot index
+        df = dataframes[i]
+        host_year = host_years[i]
+        legend = legends[i]
+        title = titles[i]
 
-    plt.subplot(1, 2, 2)  # Subplot 2
-    plt.plot(df2[x_column], df2[y_column], label=legend2, marker='o', color='yellow')
-    plt.axvline(x=host_year2, color='red', linestyle='--', label=f'{host_year2} Olympics')
-    plt.title(title2)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.grid()
+        plt.plot(df[x_column], df[y_column], label=legend, marker='o', color=f'C{i % 10}')  # Different colors
+        plt.axvline(x=host_year, color='red', linestyle='--', label=f'{host_year} Event')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend()
+        plt.grid()
 
     # Adjust layout and show
     plt.tight_layout()
     plt.show()
 
 
-def two_plot_health(
-        df1, host_year1, title1,
-        df2, host_year2, title2,
-        x_column, y_column, xlabel, ylabel, metric, gender_column):
+def four_plot_health(
+        dfs, host_years, titles, x_column, y_column, xlabel, ylabel, metric, gender_column):
     """
-    Compare health trends for two countries using three gender categories.
+    Compare health trends for four countries using three gender categories.
 
-    :param df1: DataFrame for the first country (e.g., Australia).
-    :param host_year1: host year for the first country.
-    :param title1: Title for the first country.
-    :param df2: DataFrame for the second country.
-    :param host_year2: host year for the second country.
-    :param title2: Title for the second country.
+    :param dfs: List of DataFrames for the countries.
+    :param host_years: List of host years for the countries.
+    :param titles: List of titles for the plots.
     :param x_column: Column name for the x-axis.
     :param y_column: Column name for the y-axis.
     :param xlabel: Label for the x-axis.
     :param ylabel: Label for the y-axis.
-    :param metric: column to compare health trends
+    :param metric: Column to compare health trends.
     :param gender_column: Column name for the gender categories.
     """
-
     genders = ['Female', 'Male', 'Both sexes']
     colors = ['blue', 'orange', 'green']
 
-    plt.figure(figsize=(12, 5))
-    plt.subplot(1, 2, 1)
-    for gender, color in zip(genders, colors):
-        gender_data = df1[df1[gender_column] == gender]
-        plt.plot(
-            gender_data[x_column],
-            gender_data[y_column],
-            label=f'Australia {gender} {metric}',
-            marker='o',
-            color=color
-        )
-    plt.axvline(x=host_year1, color='red', linestyle='--', label=f'{host_year1} Olympics')
-    plt.title(title1)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.grid()
+    plt.figure(figsize=(14, 10))  # Adjust size for 4 subplots
 
-    # Plot for the second country
-    plt.subplot(1, 2, 2)
-    for gender, color in zip(genders, colors):
-        gender_data = df2[df2[gender_column] == gender]
-        plt.plot(
-            gender_data[x_column],
-            gender_data[y_column],
-            label=f'China {gender} {metric}',
-            marker='o',
-            color=color
-        )
-    plt.axvline(x=host_year2, color='red', linestyle='--', label=f'{host_year2} Olympics')
-    plt.title(title2)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.grid()
+    for i, (df, host_year, title) in enumerate(zip(dfs, host_years, titles), 1):
+        plt.subplot(2, 2, i)  # 2 rows, 2 columns, subplot i
+        for gender, color in zip(genders, colors):
+            gender_data = df[df[gender_column] == gender]
+            plt.plot(
+                gender_data[x_column],
+                gender_data[y_column],
+                label=f'{gender} {metric}',
+                marker='o',
+                color=color
+            )
+        plt.axvline(x=host_year, color='red', linestyle='--', label=f'{host_year} Olympics')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend()
+        plt.grid()
 
     plt.tight_layout()
     plt.show()

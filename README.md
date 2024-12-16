@@ -44,9 +44,6 @@ We analyze data across five key dimensions:
 4. Environmental Indicators
 - Greenhouse Gas Emissions: [Greenhouse Gas Emission](data/ghg-emissions.csv)
 
-4. _没用到_ Urban Development:
-- Urban Population Percentage: [Urban Population](data/Percentage_Urban_Population.csv)  
-
 5. Labor Market:
 - Employment Change: [Unemployment Rate Australia](data/Unemployment_rate_Australia.csv),[Unemployment Rate China](data/Unemployment_rate_China.csv)
 
